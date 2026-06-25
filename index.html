@@ -67,7 +67,10 @@
     <a href="#contact" class="btn btn-ghost">Get in touch</a>
     <a href="https://www.linkedin.com/in/devnetabdullah" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
   </div>
-  <p class="pricing-note">Projects from <strong>$500</strong> · Retainers from <strong>$800/mo</strong> · <a href="#contact">Available for freelance</a></p>
+  <div class="pricing-wrap">
+    <p class="pricing-note" data-pricing>Projects from <strong>$500</strong> · Retainers from <strong>$800/mo</strong> · <a href="#contact">Available for freelance</a></p>
+    <button type="button" class="currency-toggle" data-currency-toggle aria-pressed="false">Switch to PKR 🇵🇰</button>
+  </div>
   <div class="stack-row">
     <span class="pill"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="">React</span>
     <span class="pill"><img src="https://cdn.simpleicons.org/svelte/FF3E00" alt="">SvelteKit</span>
@@ -275,9 +278,12 @@
   <div class="section-head reveal">
     <span class="num">06 · Contact</span>
     <h2>Let's build something</h2>
-    <p>Available for freelance engagements · Projects from $500 · Retainers from $800/month</p>
   </div>
   <div class="contact-wrap reveal">
+    <div class="pricing-wrap pricing-wrap--contact">
+      <p class="pricing-note" data-pricing>Projects from <strong>$500</strong> · Retainers from <strong>$800/mo</strong> · <a href="#contact">Available for freelance</a></p>
+      <button type="button" class="currency-toggle" data-currency-toggle aria-pressed="false">Switch to PKR 🇵🇰</button>
+    </div>
     <div class="contact-links">
       <a class="contact-card" href="mailto:devnetabdullah.khaled@gmail.com">
         <span class="icon-wrap"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt=""></span>
@@ -376,6 +382,7 @@
 
   document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
 </script>
+<script src="pricing-toggle.js"></script>
 
 </body>
 </html>

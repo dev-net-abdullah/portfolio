@@ -242,7 +242,10 @@
 <section id="contact-cta" style="padding-bottom:80px;">
   <div class="section-head reveal" style="text-align:center;">
     <h2>Like what you see?</h2>
-    <p style="margin:12px auto 0;">Available for freelance engagements · Projects from $500 · Retainers from $800/month</p>
+    <div class="pricing-wrap pricing-wrap--center">
+      <p class="pricing-note" data-pricing data-contact-href="../#contact">Projects from <strong>$500</strong> · Retainers from <strong>$800/mo</strong> · <a href="../#contact">Available for freelance</a></p>
+      <button type="button" class="currency-toggle" data-currency-toggle aria-pressed="false">Switch to PKR 🇵🇰</button>
+    </div>
   </div>
   <div class="reveal" style="margin-top:24px;text-align:center;">
     <a href="../#contact" class="btn btn-primary">Get in touch</a>
@@ -317,6 +320,7 @@
 
   document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
 </script>
+<script src="../pricing-toggle.js"></script>
 
 </body>
 </html>
