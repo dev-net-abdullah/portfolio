@@ -18,6 +18,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script>
+(function(){try{var t=localStorage.getItem('site-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.style.colorScheme='light'}}catch(e){}})();
+</script>
 </head>
 <body>
 
@@ -40,12 +43,18 @@
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
     <span></span><span></span><span></span>
   </button>
-  <ul class="nav-links nav-links--desktop">
-    <li><a href="#stack">Stack</a></li>
-    <li><a href="work/">Work</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-end">
+    <ul class="nav-links nav-links--desktop">
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="work/">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to light mode">
+      <span class="theme-icon theme-icon--dark" aria-hidden="true">☀</span>
+      <span class="theme-icon theme-icon--light" aria-hidden="true">☾</span>
+    </button>
+  </div>
 </nav>
 
 <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
@@ -55,10 +64,84 @@
     <li><a href="work/">Work</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li class="nav-drawer-theme">
+      <button type="button" class="theme-toggle theme-toggle--drawer" data-theme-toggle aria-pressed="false" aria-label="Switch to light mode">
+        <span class="theme-icon theme-icon--dark" aria-hidden="true">☀ Light mode</span>
+        <span class="theme-icon theme-icon--light" aria-hidden="true">☾ Dark mode</span>
+      </button>
+    </li>
   </ul>
 </div>
 
-<section class="hero">
+<div class="compile-scroll-track" id="compile-track">
+  <div class="compile-sticky">
+    <div class="compile-stage">
+        <div class="compile-topbar">
+          <span class="compile-workspace">portfolio <span class="dim">/ app</span></span>
+          <span class="compile-meta">
+            <span class="compile-branch">⎇ main</span>
+            <span class="compile-live"><span class="pulse"></span> dev server</span>
+          </span>
+        </div>
+        <div class="compile-main">
+          <aside class="compile-sidebar" aria-hidden="true">
+            <div class="sidebar-label">Explorer</div>
+            <ul class="file-tree">
+              <li class="tree-folder open">app/</li>
+              <li class="tree-file active">page.tsx</li>
+              <li class="tree-file">layout.tsx</li>
+              <li class="tree-folder">components/</li>
+              <li class="tree-file indent">Hero.tsx</li>
+              <li class="tree-file indent">Stack.tsx</li>
+              <li class="tree-folder">lib/</li>
+              <li class="tree-file indent">seo.ts</li>
+            </ul>
+          </aside>
+          <div class="compile-center">
+            <div class="code-tabs" aria-hidden="true">
+              <span class="code-tab active">page.tsx</span>
+              <span class="code-tab">layout.tsx</span>
+              <span class="code-tab">globals.css</span>
+            </div>
+            <div class="code-editor">
+              <pre class="code-block"><code><span class="code-line dim"><span class="ln">1</span><span class="c-kw">import</span> { <span class="c-fn">Hero</span>, <span class="c-fn">CTA</span>, <span class="c-fn">Stack</span> } <span class="c-kw">from</span> <span class="c-str">'@/components'</span></span><span class="code-line dim"><span class="ln">2</span><span class="c-kw">import</span> { <span class="c-fn">metadata</span> } <span class="c-kw">from</span> <span class="c-str">'next'</span></span><span class="code-line dim"><span class="ln">3</span></span><span class="code-line dim"><span class="ln">4</span><span class="c-kw">export const</span> <span class="c-fn">metadata</span> = { <span class="c-prop">title</span>: <span class="c-str">'Muhammad Abdullah'</span> }</span><span class="code-line dim"><span class="ln">5</span></span><span class="code-line dim"><span class="ln">6</span><span class="c-kw">export default function</span> <span class="c-fn">Page</span>() {</span><span class="code-line dim"><span class="ln">7</span>  <span class="c-kw">return</span> (</span><span class="code-line dim" id="code-line-hero"><span class="ln">8</span>    &lt;<span class="c-tag">Hero</span> <span class="c-prop">title</span>=<span class="c-str">"enterprise-grade web systems"</span> /&gt;</span><span class="code-line dim" id="code-line-cta"><span class="ln">9</span>    &lt;<span class="c-tag">CTA</span> <span class="c-prop">primary</span>=<span class="c-str">"View work"</span> <span class="c-prop">contact</span>=<span class="c-str">"Get in touch"</span> /&gt;</span><span class="code-line dim" id="code-line-stack"><span class="ln">10</span>    &lt;<span class="c-tag">Stack</span> <span class="c-prop">items</span>={<span class="c-str">['React','Next.js','.NET']</span>} /&gt;</span><span class="code-line dim"><span class="ln">11</span>  )</span><span class="code-line dim"><span class="ln">12</span>}<span class="code-cursor" aria-hidden="true"></span></span></code></pre>
+            </div>
+            <div class="compile-terminal" aria-hidden="true">
+              <div class="terminal-line"><span class="t-prompt">$</span> npm run dev</div>
+              <div class="terminal-line dim t-line">▲ Next.js 15 · Turbopack</div>
+              <div class="terminal-line dim t-line">✓ ready on <span class="c-accent">http://localhost:3000</span></div>
+              <div class="terminal-line dim t-line">○ compiling /app/page.tsx ...</div>
+              <div class="compile-status" id="compile-status"></div>
+            </div>
+          </div>
+          <aside class="compile-preview" aria-hidden="true">
+            <div class="preview-bar">
+              <span class="preview-dots"><i></i><i></i><i></i></span>
+              <span class="preview-url">localhost:3000</span>
+            </div>
+            <div class="preview-canvas" id="preview-canvas">
+              <div class="preview-eyebrow"></div>
+              <div class="preview-title">
+                <span></span><span></span><span class="accent"></span>
+              </div>
+              <div class="preview-lead">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="preview-btns">
+                <span class="fill"></span><span></span><span></span>
+              </div>
+              <div class="preview-pills">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </aside>
+        </div>
+    </div>
+    <p class="compile-hint" id="compile-hint">scroll to compile ↓</p>
+  </div>
+</div>
+
+<section class="hero" id="hero-site">
   <span class="eyebrow">Full stack Engineer & System Design Architect · SEO expert</span>
   <h1>Muhammad Abdullah <br>building <span class="accent">enterprise-grade</span><br>web systems.</h1>
   <p class="lead">Web Development Team Lead, Technical Architect & SEO specialist shipping scalable multi-tenant platforms, CRA→Next.js migrations for search performance, and enterprise systems for Extreme Freelancing and clients worldwide.</p>
@@ -383,6 +466,8 @@
   document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
 </script>
 <script src="pricing-toggle.js"></script>
+<script src="theme.js"></script>
+<script src="hero-compile.js"></script>
 
 </body>
 </html>
