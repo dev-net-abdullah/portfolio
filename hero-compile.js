@@ -4,10 +4,14 @@
   if (!track || !hero) return;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const mobile = window.innerWidth < 768;
+  const mobileMq = window.matchMedia('(max-width: 768px)');
 
   let scrolledToHero = false;
   let scrollTween = null;
+
+  function isMobile() {
+    return mobileMq.matches;
+  }
 
   function skipCompile() {
     track.classList.add('compile-skipped');
@@ -20,7 +24,7 @@
   }
 
   function slowScrollToHero(gsap) {
-    if (scrolledToHero || scrollTween) return;
+    if (isMobile() || scrolledToHero || scrollTween) return;
     scrolledToHero = true;
     document.body.classList.add('compile-handoff');
 
@@ -51,7 +55,7 @@
     }
   }
 
-  if (reduced || mobile) {
+  if (reduced) {
     skipCompile();
     return;
   }
@@ -86,7 +90,8 @@
           trigger: track,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 0.5,
+          scrub: isMobile() ? 0.25 : 0.5,
+          invalidateOnRefresh: true,
           onLeave(self) {
             if (self.direction === 1) slowScrollToHero(gsap);
           },
@@ -110,7 +115,7 @@
       const lines = gsap.utils.toArray('#compile-track .code-line');
       const tLines = gsap.utils.toArray('#compile-track .compile-terminal .t-line');
 
-      const LINE_STEP = 0.042;
+      const LINE_STEP = isMobile() ? 0.05 : 0.042;
 
       lines.forEach((line, i) => {
         tl.fromTo(
@@ -126,9 +131,16 @@
         tl.to(line, { opacity: 1, duration: 0.02, ease: 'none' }, 0.52 + i * 0.055);
       });
 
-      tl.to(hint, { opacity: 0, duration: 0.1 }, 0.08)
-        .fromTo(previewPanel, { opacity: 0 }, { opacity: 1, duration: 0.18, ease: 'none' }, 0.58)
-        .to('#compile-track .compile-sticky', { y: -24, duration: 0.15, ease: 'none' }, 0.76);
+      tl.to(hint, { opacity: 0, duration: 0.1 }, 0.08);
+
+      if (!isMobile() && previewPanel) {
+        tl.fromTo(previewPanel, { opacity: 0 }, { opacity: 1, duration: 0.18, ease: 'none' }, 0.58)
+          .to('#compile-track .compile-sticky', { y: -24, duration: 0.15, ease: 'none' }, 0.76);
+      } else {
+        tl.to('#compile-track .compile-sticky', { y: -12, duration: 0.12, ease: 'none' }, 0.76);
+      }
+
+      window.addEventListener('resize', () => ScrollTrigger.refresh());
     })
     .catch(skipCompile);
 })();
