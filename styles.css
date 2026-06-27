@@ -408,6 +408,68 @@
   .hero .stack-row{
     margin-top:48px;
   }
+
+  /* logo strip */
+  .logo-strip-section{
+    padding-top:32px; padding-bottom:32px;
+    max-width:1100px; margin:0 auto;
+  }
+  .logo-strip-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--muted); text-align:center;
+    margin-bottom:20px;
+  }
+  .logo-strip{
+    position:relative; overflow:hidden;
+    mask-image:linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image:linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  .logo-strip-track{
+    display:flex; align-items:center;
+    width:max-content;
+    will-change:transform;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    animation:none;
+  }
+  .logo-strip.is-ready .logo-strip-track{
+    animation:logoStripScroll var(--marquee-duration, 16s) linear infinite;
+  }
+  .logo-strip:hover .logo-strip-track{ animation-play-state:paused; }
+  .logo-strip-group{
+    display:flex; align-items:center; gap:48px;
+    flex-shrink:0;
+  }
+  .logo-strip-item{
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; height:40px; min-width:80px; max-width:140px;
+    opacity:0.88;
+    transition:opacity 0.25s, transform 0.25s;
+  }
+  a.logo-strip-item{ text-decoration:none; }
+  .logo-strip-item:hover{ opacity:1; transform:scale(1.04); }
+  .logo-strip-img{
+    display:block; width:auto; height:28px; max-width:120px;
+    object-fit:contain; object-position:center;
+  }
+  [data-theme="light"] .logo-strip-item{ opacity:0.82; }
+  [data-theme="light"] .logo-strip-item:hover{ opacity:1; }
+  @keyframes logoStripScroll{
+    from{ transform:translate3d(0, 0, 0); }
+    to{ transform:translate3d(calc(-1 * var(--marquee-distance)), 0, 0); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .logo-strip{ mask-image:none; -webkit-mask-image:none; overflow:visible; }
+    .logo-strip-track{
+      flex-wrap:wrap; justify-content:center;
+      width:100%; gap:28px 40px;
+      animation:none !important;
+    }
+    .logo-strip-group{ flex-wrap:wrap; justify-content:center; gap:28px 40px; }
+    .logo-strip-group[aria-hidden="true"]{ display:none; }
+    .logo-strip-item{ opacity:0.9; }
+  }
+
   .stack-groups{ display:flex; flex-direction:column; gap:28px; }
   .stack-group h3{
     font-family:var(--mono); font-size:12px; letter-spacing:2px; text-transform:uppercase;
@@ -741,6 +803,9 @@
     .hero-cta{ gap:10px; }
     .hero-cta .btn{ flex:1 1 calc(50% - 5px); justify-content:center; padding:12px 16px; font-size:13px; }
     .hero .stack-row{ margin-top:28px; }
+    .logo-strip-section{ padding:24px 20px; }
+    .logo-strip-group{ gap:36px; }
+    .logo-strip-img{ height:24px; max-width:100px; }
     .section-head{ margin-bottom:32px; }
     .section-head h2{ font-size:1.65rem; }
     .project-body{ padding:24px 20px; }
