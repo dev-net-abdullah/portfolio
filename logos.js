@@ -11,7 +11,7 @@
  */
 window.LOGO_STRIP = [
   {
-    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0qlBuThhsPAfWDz3WTmS9XVWb32NH4Q_7fQ&s',
+    src: 'assets/reliance-logo.jpg',
     name: 'Reliance Hospital',
     href: 'https://reliancehospital.org',
   },

@@ -12,12 +12,19 @@
     return;
   }
 
+  function resolveSrc(src) {
+    if (/^(https?:|data:)/i.test(src)) return src;
+    const script = document.querySelector('script[src*="logo-strip.js"]');
+    const base = script?.src.replace(/[^/]+$/, '') || '';
+    return base + src.replace(/^\//, '');
+  }
+
   function normalize(entry) {
     if (typeof entry === 'string') {
-      return { src: entry, name: 'Partner logo', href: '' };
+      return { src: resolveSrc(entry), name: 'Partner logo', href: '' };
     }
     return {
-      src: entry.src || entry.url || '',
+      src: resolveSrc(entry.src || entry.url || ''),
       name: entry.name || entry.alt || 'Partner logo',
       href: entry.href || entry.link || '',
     };
