@@ -11,7 +11,7 @@
  */
 window.LOGO_STRIP = [
   {
-    src: '/collaborators_logo/logo.jpg',
+    src: 'logo.jpg',
     name: 'Reliance Hospital',
     href: 'https://reliancehospital.org',
   },
